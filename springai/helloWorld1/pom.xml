@@ -92,6 +92,13 @@
             <artifactId>spring-ai-vector-store-advisor</artifactId>
         </dependency>
 
+        <!-- MCP 客户端：通过 SSE 连接本机 mcp-server（默认端口 8888） -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-mcp-client</artifactId>
+        </dependency>
+
+
 
 
     </dependencies>
