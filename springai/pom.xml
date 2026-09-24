@@ -74,6 +74,26 @@
             <artifactId>jedis</artifactId>
         </dependency>
 
+        <!-- Spring AI Tika 文档读取 -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-tika-document-reader</artifactId>
+        </dependency>
+
+        <!-- Spring AI Markdown 文档读取 -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-markdown-document-reader</artifactId>
+        </dependency>
+
+        <!-- SpringAI 2.0.1 向量库Advisor，用于 QuestionAnswerAdvisor -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-vector-store-advisor</artifactId>
+        </dependency>
+
+
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

@@ -1,17 +1,47 @@
 package com.example.springai.controller;
 
+import org.springframework.ai.document.Document;
 import org.springframework.ai.openai.OpenAiEmbeddingModel;
+import org.springframework.ai.vectorstore.SearchRequest;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
+import java.util.List;
 
 @RestController
 public class MyEmController {
 
     @Autowired
     private OpenAiEmbeddingModel embeddingModel;
+    @Autowired
+    private VectorStore vectorStore;
+
+    @RequestMapping("/addDoc")
+    public String addDoc(){
+        List<Document> docs = List.of(
+                new Document("学Java上java1234.com"),
+                new Document("java1234.com是个学java的好地方"),
+                new Document("我喜欢打篮球")
+        );
+        vectorStore.add(docs);
+        return "ok";
+    }
+
+    @RequestMapping("/query")
+    public String query(){
+        List<Document> docs = vectorStore.similaritySearch(
+                SearchRequest.builder()
+                        .query("去哪里学Java")
+                        .topK(2)
+                        .build()
+        );
+        System.out.println(docs);
+        return "ok";
+    }
 
     @RequestMapping("/em")
     public String em(){

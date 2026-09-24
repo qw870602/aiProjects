@@ -4,8 +4,15 @@ spring:
   data:
     redis:
       client-type: jedis
-      url:
+      url: redis://localhost:6379
   ai:
+    model:
+      embedding: openai
+    vectorstore:
+      redis:
+        initialize-schema: true #是否在启动时创建/初始化向量索引等结构
+        index-name: java1234_ai_vector_index #RedisSearch 里的索引者
+        prefix: "java1234_" #存向量文档用的redis键前缀
     openai:
       api-key: ${OPENAI_API_KEY}
       base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
@@ -14,10 +21,10 @@ spring:
       embedding:
         model: text-embedding-v4 #阿里的文本向量模型
         dimensions: 2048 #向量维度
-    ollama:
-      base-url: http://localhost:11434
-      chat:
-        model: qwen
+    #ollama:
+    #  base-url: http://localhost:11434
+    #  chat:
+    #    model: qwen
 logging:
   level:
     org.springframework.ai: debug
